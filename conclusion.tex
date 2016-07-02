@@ -1,0 +1,6 @@
+\section{Conclusion and future work}
+To deal with the problems that Android application is easily to be tempered and repacked, this paper proposes a protection method based on obfuscating smali code. We have analyzed the related work about protecting the code of Android apps in recent year. We also have described the design and implementation of confusing the data flow for the access procedure of register data, and combining opaque predicates technology to confuse the control flow. This method can resist decompiling. Meanwhile, we evaluate the potency, resilience and cost of the code obfuscation method. Experimental result demonstrates excellent performance of the effectiveness and low cost.
+
+The protection method presented in this paper has some limitations as well. It can only be used some specific instructions formant and not be used at large scale. Our proposed method does not protect the resources and native library .so of an Android app and protects only the dex file.
+
+In the future work, we will utilize the technology of control-flow platting to confuse the control-flow of an program and protect native library .so to strengthen the protection and increase difficulty in reverse engineering.
