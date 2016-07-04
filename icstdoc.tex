@@ -85,7 +85,7 @@ This paper presents \ToolName, a novel bytecode level code obfuscation system
 for Android applications. Unlike prior approaches, our method performs on the Android
 Dex bytecode and does not require access to high-level program source. Our approach exploits the two key structures of the Android Dex format
  to protect applications against both static and dynamic code analysis. 
- To deter static analsysis, our approach leverages the fact all except floating
+ To deter static analysis, our approach leverages the fact all except floating
 operands in Dex are stored in a 32-bit register, by packing two 32-bit
 operands into a 64-bit operand. In this way, any attempt to decompile the
 bytecode will result in wrong operands. To prevent dynamic analysis, we obfuscate the program
@@ -114,6 +114,13 @@ Experimental results show that our approach can deter sophisticate reverse engin
 </concept>
 </ccs2012>
 \end{CCSXML}
+
+\ccsdesc[300]{Security and privacy~Mobile and wireless security}
+
+\printccsdesc
+% no keywords
+\keywords{Code obfuscation, Android code protection, Reverse engineering}\\
+
 
 
 \input{introduction}
