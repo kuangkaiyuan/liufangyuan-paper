@@ -31,7 +31,7 @@
 
 
 \begin{document}
-\title{Bytecode Level Code Obfuscation for Android Apps}
+\title{Bytecode Level Code Obfuscation for Android Applications}
 \author{}
 
 \maketitle
@@ -82,14 +82,15 @@ This paper presents \ToolName, a novel bytecode level code obfuscation system
 for Android apps. Unlike prior approaches, our method peforms on the Android
 Dex bytecode and does not require having access to high-level program source
 code. Our approach exploits the two key structures of the Android Dex stack machine
- for code protection. Firstly, our approach leverages the fact all except floating
+ for to protect applications against static and dynamic code analysis. 
+ To deter static analsysis, our approach leverages the fact all except floating
 operands in Dex are stored in a 32-bit register, by packing two 32-bit
 operands into a 64-bit operand. In this way, any attempt to decompile the
-bytecode will result in wrong operands. Secondly, we obfuscate the program
+bytecode will result in wrong operands. To prevent dynamic analysis, we obfuscate the program
 control flow by inserting opaque predicates before the return instruction of
-a function call to protect the application against dynamic analysis. These two techniques, putting together, enable us to
+a function call, so that the attacker will fail to trace calls to protected functions. These two techniques, putting together, enable us to
 build a new, more powerful
-byte-code level protection scheme for Android apps. 
+byte-code level protection scheme for Android applications. 
 Experimental results show that our approach can deter sophisticate reverse engineering and code analysis tools and the runtime overhead is comparable to state-of-the-art source code level code obfuscation schemes.
 
 
