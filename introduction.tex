@@ -23,8 +23,8 @@ protection technique performing on the compiled bytecodes with stronger protecti
 
 The first effort in this direction is SMOG~\cite{10} that performs code
 obfuscation by permuting the instruction opcodes from the compiled Dex
-bytecode\footnote{The Dex bytecode is the executable binary format for Android
-applications. It was originally designed for the Dalvik, which is then
+bytecode\footnote{Dalvik Executable format (DEX) is the executable binary format for Android
+applications. It was originally designed for the Dalvik VM, which is then
 remained to be used by the latest Android runtime (ART).}. The permutated opcodes are then
 interpreted at runtime through a modified VM interpreter. While promising,
 there is a significant shortcoming of this approach. Because the permutation

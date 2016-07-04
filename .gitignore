@@ -46,3 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 icstdoc.pdf
+*.log
+icstdoc.aux
+*.synctex
+icstdoc.synctex
