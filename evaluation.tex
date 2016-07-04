@@ -32,10 +32,18 @@ Cost. The function's time complexity is O(1) after being obfuscated. Firstly, in
   \includegraphics[width=0.8\columnwidth]{fig/fig7.pdf}
   \caption{The case of reversing engineering. When we inject the opaque predicates after invoking the \emph{add()} method, the attacker can't capture the return-value \emph{sum.}}\label{fig:Figure 7}
 \end{figure}
-\section{Experiment results}
-Based on the deep research in SmaliPro, as shown in Fig.2, this paper designed and implemented a prototype system. It can resist the static analysis and dynamic analysis of the process of the reverse engineering. All experiment are conducted on the Android virtual decice of Android Version 4.2, which has 512M RAM, and 256M internal storage.
+\section{Evaluation}
 
-To measure the performance overhead and effectiveness of SmaliPro, we first selected four typical applications which have different instructions as test case. These four apps are listed in Table~\ref{tab:Table 1}.
+\subsection{Experimental Setup}
+\paragraph*{Hardware} Our approach is evaluated using a Huawei Nexus 6p phone, which runs the Android 6.0 Marshmallow operating system. The device has two processors: a four-core ARM Cortex-A57 processor at 1.95 GHz and a four-core ARM Cortex-A53 processor at 1.55 GHz. 
+The device has 3 GB of RAM and 64 GB of internal storage. 
+
+\paragraph*{Benchmarks} Our approach is evaluated by using the developed tool to protect a set of representative operations of typical Android applications. We have implemented these operations in four applications (listed Table~\ref{tab:Table 1}).
+These test cases represent \FIXME{xx, xx, xx. Explain these operations }. 
+
+%Based on the deep research in SmaliPro, as shown in Fig.2, this paper designed and implemented a prototype system. It can resist the static analysis and dynamic analysis of the process of the reverse engineering. All experiment are conducted on the Android virtual decice of Android Version 4.2, which has 512M RAM, and 256M internal storage.
+
+%To measure the performance overhead and effectiveness of SmaliPro, we first selected four typical applications which have different instructions as test case. These four apps are listed in Table~\ref{tab:Table 1}.
 
 \begin{table}[htbp]
   \centering

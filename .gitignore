@@ -50,3 +50,5 @@ icstdoc.pdf
 icstdoc.aux
 *.synctex
 icstdoc.synctex
+*.bbl
+icstdoc.blg
