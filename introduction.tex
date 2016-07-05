@@ -29,7 +29,7 @@ remains to be used as a standard bytecode format for Android applications after 
 interpreted at runtime through a modified VM interpreter. While promising,
 there is a significant shortcoming of this approach. Programs protected
 by SMOG must run in a dedicated VM other than the native Android runtime 
-environment.  This limits the application of SMOG in practice. 
+environment, which limits the application of SMOG at larger scale.  
 
 
 %Majority of security solutions have been designed and deployed primarily focusing on the client side interests. Firewalls\cite{28,29}, Intrusion Detection \& Prevention Systems (IDPS)\cite{30,31}, antivirus\cite{32}, digitally signed software, etc. are examples of security applications that provide software protection at the user end but do not degend against the software vulnerabilities exploited by attackers and reverse engineers. Therefore, it is imperative to propose a method to increase the difficulty of reverse engineering. One of the techniques used against reverse engineering attacks is code obfuscation\cite{05}.
