@@ -6,19 +6,19 @@ application developers. This technique is widely used by adversaries to
 perform various attacks, including removing copyright protection to obtain an
 illegal copy of the software, taking out advertisement from the app, or
 injecting malicious code into the program. By making the program harder to be
-traced and analyzed, code obfuscation is viable means to
+traced and analyzed, code obfuscation is a viable means to
 protect applications from unauthorized code modification.
 
 
 A number of code obfuscation approaches have been proposed to protect
-applications against code reverse engineering~\cite{06,07,08,09}. Most of the
+applications against reverse engineering~\cite{06,07,08,09}. Most of the
 prior work perform code obfuscation on high-level programming languages such
-as java and require access to the program source code. However, this
+as Java and require access to the program source code. However, this
 requirement has two major drawbacks: (1) source code level code obfuscation
 provides limited protection as the obfuscated code can removed or
 optimized out by the compiler; (2) many developers are not willing to disclose
 their source code.  As such, a code
-protection technique performing on the compiled bytecodes with stronger protection is highly attractive.
+protection technique performing on the compiled bytecodes or binary with stronger protection is highly attractive.
 
 
 The first effort in this direction is SMOG~\cite{10} that performs code
@@ -27,11 +27,9 @@ bytecode\footnote{The Dalvik executable format (Dex) is the executable binary fo
 applications. It was originally designed for the Dalvik VM. It
 remains to be used as a standard bytecode format for Android applications after the Dalvik VM is replaced by the Android runtime (ART).}. The permutated opcodes are then
 interpreted at runtime through a modified VM interpreter. While promising,
-there is a significant shortcoming of this approach. Because the permutation
-is statically determined and hard-coded, SMOG can only resist static but not
-dynamic analysis where an attacker can discover the mapping of opcodes through
-profiling the application to trace the permutation. Therefore, a technique to
-protect the application against both static and dynamic analysis is needed.
+there is a significant shortcoming of this approach. Programs protected
+by SMOG must run in a dedicated VM other than the native Android runtime 
+environment.  This limits the application of SMOG in practice. 
 
 
 %Majority of security solutions have been designed and deployed primarily focusing on the client side interests. Firewalls\cite{28,29}, Intrusion Detection \& Prevention Systems (IDPS)\cite{30,31}, antivirus\cite{32}, digitally signed software, etc. are examples of security applications that provide software protection at the user end but do not degend against the software vulnerabilities exploited by attackers and reverse engineers. Therefore, it is imperative to propose a method to increase the difficulty of reverse engineering. One of the techniques used against reverse engineering attacks is code obfuscation\cite{05}.
@@ -39,7 +37,7 @@ protect the application against both static and dynamic analysis is needed.
 %Current code obfuscation literatures\cite{06,07,08} and obfuscation tool\cite{09} mainly focus on the obfuscation on Java source code. However, if the source code will not be provided by the developers in order to protect their intellectual property rights, this method will be ineffective. SMOG\cite{10}obfuscates an Android app into a proprietary form with opcode re-mapping and provides an enhanced interpreter for program interpretation, but it need to modify the source code of Dalvik VM\cite{19}interpreter and is not universal. The identifier confusion method has been mentioned in the existed literature\cite{11}, this method can only increase the difficulty of static analysis. But if an attacker has the capability of dynamically analyzing the app on Android, all the correct binary code is exposed and the code is disassembled anyway. In this situation, existing schemes cannot protect the executable code of the app and essential information for program understanding is leaked out.
 
 
-%I take out this diagram because it says nothing. 
+%I take out this diagram because it says nothing.
 %\begin{figure}
 %  \centering
 %  % Requires \usepackage{graphicx}
@@ -52,7 +50,9 @@ protect the application against both static and dynamic analysis is needed.
 %
 %The core concept of SmaliPro is obfuscating the access procedure of constants in the registers. But the verifier component of Android runtime system(\emph{CodeVerify.app; DexVerify.cpp}) is referred to as VFY by Dalvik VM, which verifies the type of registers when loading the class. So our obfuscated application is not normally running. It is the challenge in this paper. In order to solve the problem, we use the dex dynamic loading technology and Dalvik runtime tampering technology, which is explained in Section 4.3.
 
-In this paper, we present \ToolName, a novel bytecode level code obfuscation system for Android applications. \ToolName advances prior work in the following ways. Firstly, \ToolName performs code obfuscation on the bytecode level, so it does not require accessing to the source code and as a result the obfuscated code will not be optimized out by the compiler. Secondly, it obfuscates the dynamic program control flow when calling key protected functions. This significantly increases the difficulty for dynamic code analysis. \ToolName exploits two aspects of the Android Dex bytecode definition: (1) all except for floating operands are based on a 32-bit register and (2) the instruction follows a function call is always used to retrieve the return value of the function. Our approach utilizes the register structure of Dex to pack two 32-bit operands into a single 64-bit data item, so that any attempt in decoding the protected operands will receive incorrect information. We leverage the calling conversion of Dex, to insert opaque predicates (i.e. code with complex logic but does not get executed) between instructions of the function call and return value retrieval. Doing so not only makes it harder for the attacker to obtain the return value, but also obfuscates the dynamic program behavior. By combining these two techniques, \ToolName provides stronger protection when compared to existing code obfuscation techniques that target at the source code or bytecode level, with little extra overhead.  
+In this paper, we present \ToolName, a novel bytecode level code obfuscation system for Android applications. \ToolName advances prior work in the following ways. Firstly, \ToolName performs code obfuscation on the bytecode level, so it does not require accessing to the source code and as a result the obfuscated code will not be optimized out by the compiler. Secondly, 
+it requires no modification to the compiler and runtime environment. Hence the obfuscated code can run on any environment that supports the standard Android bytecode format. 
+\ToolName exploit two key structures of the Android Dex bytecode definition to protect the program against dynamic code analysis: (1) all except for floating operands are based on a 32-bit register and (2) the instruction follows a function call is always used to retrieve the return value of the function. Our approach utilizes the register structure of Dex to pack two 32-bit operands into a single 64-bit data item, so that any attempt in decoding the protected operands will receive incorrect information. We leverage the calling conversion of Dex, to insert opaque predicates (i.e. code with complex logic but does not get executed) between instructions of the function call and return value retrieval. Doing so not only makes it harder for the attacker to obtain the return value, but also obfuscates the dynamic program behavior. By combining these two techniques, \ToolName provides stronger protection when compared to existing code obfuscation techniques that target at the source code or bytecode level, with little extra overhead.
 
 We have evaluated our approach by using \ToolName to protect a number of
 representative Android application operations. Experimental results show that
